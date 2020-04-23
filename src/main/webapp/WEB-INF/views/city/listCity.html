@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>LIST</title>
+</head>
+<body>
+<p>
+    <a href="/create-city"><input type="button" value="Tạo mới thành phố"></a>
+</p>
+<p>
+    <a href="/countryes"><input type="submit" value="DS Quốc gia"></a>
+</p>
+<h1>citys</h1>
+<!--<form>-->
+<!--    Search by first name:-->
+<!--    <input name="s" type="text"/>-->
+<!--    <input type="submit" value="Search"/>-->
+<!--</form><br/>-->
+<table border="1">
+<!--    <div>-->
+<!--        <a th:href="@{'/citys'(page=${citys.number - 1})}" th:if="${citys.hasPrevious()}">Previous</a>-->
+<!--        <span th:text="${citys.number + 1}"></span>/<span th:text="${citys.totalPages}"></span>-->
+<!--        <a th:href="@{'/citys'(page=${citys.number + 1})}" th:if="${citys.hasNext()}">Next</a>-->
+<!--    </div>-->
+
+    <tr>
+        <th>No</th>
+
+        <th>tencity</th>
+        <th>Quốc gia</th>
+
+        <th>area</th>
+        <th>population</th>
+        <th>gdp</th>
+        <th>introduce</th>
+
+        <th>Sửa</th>
+        <th>Xóa</th>
+    </tr>
+    <th:block th:each="city,interStart : ${citys}">
+        <tr>
+            <td th:text="${interStart.count}"></td>
+
+            <td th:text="${city.getName()}"></td>
+<!--            <td th:text="${city.province.name}"></td>-->
+            <td th:text="${city.getCountry().getName()}"></td>
+
+            <td th:text="${city.area}"></td>
+            <td th:text="${city.population}"></td>
+            <td th:text="${city.gdp}"></td>
+            <td>
+                <textarea cols="30" rows="5" readonly   th:text="${city.introduce}"></textarea>
+
+            </td>
+
+<!--            <td th:text="${city.introduce}">-->
+<!--                -->
+<!--            </td>-->
+
+
+            <td><a th:href="@{/edit-city/__${city.id}__ }">Sửa</a></td>
+            <td><a th:href="@{/delete-city/__${city.id}__ }">Xóa</a></td>
+        </tr>
+    </th:block>
+</table>
+<!--<div>-->
+<!--    <a th:href="@{'/citys'(page=${citys.number - 1})}" th:if="${citys.hasPrevious()}">Previous</a>-->
+<!--    <span th:text="${citys.number + 1}"></span>/<span th:text="${citys.totalPages}"></span>-->
+<!--    <a th:href="@{'/citys'(page=${citys.number + 1})}" th:if="${citys.hasNext()}">Next</a>-->
+<!--</div>-->
+
+</body>
+</html>

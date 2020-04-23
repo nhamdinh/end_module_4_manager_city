@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit city</title>
+</head>
+<body>
+<h1>Edit city</h1>
+<p>
+    <a href="/list-citys"><input type="submit" value="DS Thành phố"></a>
+</p>
+<p>
+    <a href="/countryes"><input type="submit" value="DS Quốc gia"></a>
+</p>
+
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/edit-city}" th:object="${city}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>tencity:</td>
+            <td><input  maxlength="8" required placeholder="tên thành phố" type="text" th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td>Quốc gia:</td>
+            <td>
+                <select name="country">
+                    <option th:each="country : ${countryes}"
+                            th:value="${country.id}"
+                            th:text="${country.name}"
+                            th:selected="(${country.id} == *{country.id})"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>area:</td>
+            <td><input  min="1" type="number" th:field="*{area}"/></td>
+        </tr>
+        <tr>
+            <td>population:</td>
+            <td><input  min="1" type="number" th:field="*{population}"/></td>
+        </tr>
+        <tr>
+            <td>gdp:</td>
+            <td><input  min="1" type="number" th:field="*{gdp}"/></td>
+        </tr>
+        <tr>
+            <td>introduce:</td>
+            <td><input required type="text" th:field="*{introduce}"/></td>
+        </tr>
+
+
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update city" onclick="confirm('sửa nhé')"></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>

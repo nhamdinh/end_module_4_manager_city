@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete city</title>
+</head>
+<body>
+<h1>Delete city</h1>
+<h2>Are you sure?</h2>
+<p>
+    <a href="/list-citys"><input type="submit" value="DS Thành phố"></a>
+</p>
+<p>
+    <a href="/countryes"><input type="submit" value="DS Quốc gia"></a>
+</p>
+
+<form th:action="@{/delete-city}" th:object="${city}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>tencity:</td>
+            <td th:text="${city.name}"></td>
+        </tr>
+        <tr>
+            <td>Quốc gia:</td>
+            <td th:text="${city.getCountry().getName()}"></td>
+        </tr>
+        <tr>
+            <td>area:</td>
+            <td th:text="${city.area}"></td>
+        </tr>
+
+        <tr>
+            <td>population:</td>
+            <td th:text="${city.population}"></td>
+        </tr>
+        <tr>
+            <td>gdp:</td>
+            <td th:text="${city.gdp}"></td>
+        </tr>
+        <tr>
+            <td>introduce:</td>
+            <td th:text="${city.introduce}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Delete city" onclick="return confirm('xoa nhe')"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

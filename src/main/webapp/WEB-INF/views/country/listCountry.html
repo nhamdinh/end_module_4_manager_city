@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>countrys</title>
+</head>
+<body>
+<p>
+    <a href="/create-country"><input type="submit" value="tạo mới quốc gia"></a>
+</p>
+<p>
+    <a href="/list-citys"><input type="submit" value="DS Thành phố"></a>
+</p>
+
+<h1>countryes</h1>
+<table border="1">
+    <tr>
+        <th>No</th>
+        <th>Tên quốc gia</th>
+        <th>Sửa</th>
+        <th>Xóa</th>
+        <th>Xem DS</th>
+
+    </tr>
+    <th:block th:each="country,iterStat : ${countryes}">
+        <tr>
+            <td th:text="${iterStat.count}"></td>
+            <td th:text="${country.getName()}"></td>
+            
+            
+            <td><a th:href="@{/edit-country/__${country.id}__ }">Sửa</a></td>
+            <td><a th:href="@{/delete-country/__${country.id}__ }">Xóa</a></td>
+            <td><a th:href="@{/view-country/__${country.id}__ }">Xem</a></td>
+
+
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
